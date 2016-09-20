@@ -3,18 +3,17 @@
 
 In addition, **DiceNotation.MathNet** uses the awesome [MathNet.Numerics](http://numerics.mathdotnet.com) API to support pluggable random number generators; it too is PCL.
 
-This is a fork of [Chris Wagner](https://github.com/cawagner)'s [DiceNotation](http://dicenotation.codeplex.com) library, maintained by [Ed Ropple](https://twitter.com/edropple).
+This is a fork of [EdCanHack][https://twitter.com/edropple] DiceNotation which is a fork of [Chris Wagner](https://github.com/cawagner)'s [DiceNotation](http://dicenotation.codeplex.com) library, maintained by [Ed Ropple](https://twitter.com/edropple).
 
 # Installation #
-DiceNotation is available [on NuGet](https://www.nuget.org/packages/EdCanHack.DiceNotation/0.2.0). To install, run the following command in the Package Manager Console:
+DiceNotation is available [on NuGet](https://www.nuget.org/packages/m1tche11j.DiceNotation/0.3.0). To install, run the following command in the Package Manager Console:
 
 ```
-PM> Install-Package EdCanHack.DiceNotation
-PM> Install-Package EdCanHack.DiceNotation.MathNet
+PM> Install-Package DiceNotation.CoreClass
 ```
 
 # Usage #
-```csharp
+```csharp	
 IDiceParser parser = new DiceParser();
 DiceExpression dice = parser.Parse("3d6 + 12");
 

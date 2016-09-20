@@ -3,7 +3,7 @@
   <metadata>
     <id>m1tche11j.DiceNotation</id>
     <version>0.2.0</version>
-    <title>EdCanHack.DiceNotation (.NET Core)</title>
+    <title>m1tche11j.DiceNotation (.NET Core)</title>
     <authors>Chris Wagner, Ed Ropple, John Mitchell</authors>
     <owners>John mitchell</owners>
     <licenseUrl>https://github.com/m1tche11j/DiceNotation/blob/develop/LICENSE.txt</licenseUrl>
@@ -11,15 +11,15 @@
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>
-        DiceNotation is a dice rolling library implemented as a .NET Core Library
+      DiceNotation is a dice rolling library implemented as a .NET Core Library
     </summary>
     <description>
-      DiceNotation is a dice rolling library implemented as a .NET Core Library. It can be used to turn strings like "6d4k2 + 12" into actionable dice rolls and, using DiceNotation's `MinDieRoller` and `MaxDieRoller`, can easily compute the full range as well. This is a fork to support .NET Core from the origin EdCanHack repository. 
+      DiceNotation is a dice rolling library implemented as a .NET Core Library. It can be used to turn strings like "6d4k2 + 12" into actionable dice rolls and, using DiceNotation's `MinDieRoller` and `MaxDieRoller`, can easily compute the full range as well. This is a fork to support .NET Core from the origin EdCanHack repository.
     </description>
     <releaseNotes>
-0.3.0: Fork from EdCanHack and converted to .NET Core (removed Unit test and MathNet - no Core support... yet) 
-0.2.0: Initial release on GitHub and NuGet. Upgraded to .NET 4.5 and PCL.
-0.1.0: Initial release on CodePlex.
+      0.3.0: Fork from EdCanHack and converted to .NET Core (removed Unit test and MathNet - no Core support... yet)
+      0.2.0: Initial release on GitHub and NuGet. Upgraded to .NET 4.5 and PCL.
+      0.1.0: Initial release on CodePlex.
     </releaseNotes>
     <copyright>Copyright 2011 Chris Wagner, 2015 Ed Ropple, 2016 John Mitchell</copyright>
     <tags>gamedev dice rolling</tags>
