@@ -1,14 +1,15 @@
 # DiceNotation #
-**DiceNotation** is a simple parser / evaluator for a variant of "dice notation" similar to the version used in Dungeons and Dragons 3.5 that allows developers to support the use of dice notation in their own programs. It is written in C# and depends only on Portable Class Library functionality. In the future, it should be possible for the library to understand different dialects of dice notation.
+**DiceNotation** is a simple parser / evaluator for a variant of "dice notation" similar to the version used in Dungeons and Dragons 3.5 that allows developers to support the use of dice notation in their own programs. It is written in C# and supports .NET Core. In the future, it should be possible for the library to understand different dialects of dice notation.
 
-This is a fork of [EdCanHack](https://twitter.com/edropple) DiceNotation which is a fork of [Chris Wagner](https://github.com/cawagner)'s [DiceNotation](http://dicenotation.codeplex.com) library, maintained by [Ed Ropple](https://twitter.com/edropple).
+As the project's genealogy is starting to get a tad confusing as more people have iterated upon it over the years, I (EntropiaFox) will attempt to describe it here:
+
+- The original [DiceNotation](http://dicenotation.codeplex.com) library was written by [Chris Wagner](https://github.com/cawagner).
+- It was then forked by [Ed Ropple](https://twitter.com/edropple) and brought over to GitHub.
+- This version was then ported to .NET Core by [John Mitchell](https://github.com/mitchellj/DiceNotation).
+- And this is now a fork by yours truly.
 
 # Installation #
-DiceNotation is available [on NuGet](https://www.nuget.org/packages/m1tche11j.DiceNotation/0.3.0). To install, run the following command in the Package Manager Console:
-
-```
-PM> Install-Package DiceNotation.CoreClass
-```
+(TO-DO: Upload an updated NuGet package)
 
 # Usage #
 ```csharp	
