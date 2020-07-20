@@ -14,10 +14,10 @@ namespace DiceNotationCLI
                 .CreateLogger();
             string user_input = "";
             Console.WriteLine("Enter an expression and it'll be evaluated (Enter \"exit\" to quit):");
-            while(user_input != "exit")
+            Console.Write("> ");
+            user_input = Console.ReadLine();
+            while (user_input != "exit")
             {
-                Console.Write("> ");
-                user_input = Console.ReadLine();
                 try
                 {
                     IDiceParser parser = new DiceParser();
@@ -33,7 +33,10 @@ namespace DiceNotationCLI
                 {
                     Console.WriteLine("Error: " + ex.Message);
                 }
+                Console.Write("> ");
+                user_input = Console.ReadLine();
             }
+            System.Environment.Exit(1);
         }
     }
 }
