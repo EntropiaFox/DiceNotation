@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DiceNotation.Exceptions;
+using DiceNotation.Modifiers;
 using DiceNotation.Rollers;
 
 namespace DiceNotation.Terms
@@ -56,7 +57,7 @@ namespace DiceNotation.Terms
 
         public override string ToString()
         {
-            string choose = Choose == Multiplicity ? "" : "k" + Choose;
+            string choose = Choose == Multiplicity ? "" : "k" + Choose; //Keeping all dice means this doesn't get displayed
             return Scalar == 1
                 ? string.Format("{0}d{1}{2}", Multiplicity, Sides, choose)
                 : string.Format("{0}*{1}d{2}{3}", Scalar, Multiplicity, Sides, choose);

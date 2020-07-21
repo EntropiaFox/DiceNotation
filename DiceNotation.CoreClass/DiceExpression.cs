@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using DiceNotation.Modifiers;
 using DiceNotation.Rollers;
 using DiceNotation.Terms;
 
@@ -27,6 +29,12 @@ namespace DiceNotation
             return Dice(1, sides);
         }
 
+        public DiceExpression Dice(int multiplicity, int sides, int scalar, IDieModifier modifier)
+        {
+            _terms.Add(new ModifiedDiceTerm(multiplicity, sides, scalar, modifier));
+            return this;
+        }
+
         public DiceExpression Dice(int multiplicity, int sides, int scalar = 1, int? choose = null)
         {
             _terms.Add(new DiceTerm(multiplicity, sides, choose ?? multiplicity, scalar));
@@ -43,6 +51,12 @@ namespace DiceNotation
         {
             IEnumerable<TermResult> termResults = _terms.SelectMany(t => t.GetResults(roller)).ToList();
             return new DiceResult(termResults, roller);
+        }
+
+        public DiceResult Roll(IDieRoller roller, IDieModifier modifier)
+        {
+            //Change logic depending on the exact kind of modifier
+            throw new NotImplementedException();
         }
 
         public override string ToString()

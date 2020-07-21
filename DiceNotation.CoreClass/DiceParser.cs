@@ -1,4 +1,5 @@
-﻿using System;
+using DiceNotation.Modifiers;
+using System;
 using System.Text.RegularExpressions;
 
 namespace DiceNotation
@@ -51,6 +52,38 @@ namespace DiceNotation
                     }
                     parseValues.Choose = int.Parse(chooseAccum);
                 }
+                else if (c == '!')
+                {
+                    int? parsedValue = null;
+                    char? op = null;
+                    //Is there a modifier already? Throw an exception
+                    if (parseValues.Modifier != null)
+                        throw new ArgumentException("Too many modifiers in the dice expression", "expression");
+
+                    //Start testing if there are any more optional values to parse for the modifier
+
+                    //TODO: Fix parameter parsing, let's work with normal exploding die case for now
+
+                    //string operatorAccum = "";
+                    //while(i + 1 < cleanExpression.Length && (char.IsDigit(cleanExpression[i + 1]) || Enum.IsDefined(typeof(CompareOperation), Char.GetNumericValue(cleanExpression[i + 1]))))
+                    //{
+                    //    if (!char.IsDigit(cleanExpression[i + 1]))
+                    //        if (Enum.IsDefined(typeof(CompareOperation), Char.GetNumericValue(cleanExpression[i + 1])) && op == null)
+                    //            op = cleanExpression[i + 1];
+                    //        else
+                    //            throw new ArgumentException("Invalid character in dice expression", "expression");
+                    //    else
+                    //        operatorAccum += cleanExpression[i + 1];
+                    //    ++i;
+                    //    parsedValue = int.Parse(operatorAccum);
+                    //}
+                    //if(op != null)
+                    //    parseValues.Modifier = new ExplodingDiceModifier(parsedValue, (CompareOperation)op);
+                    //else
+                    //    parseValues.Modifier = new ExplodingDiceModifier(parsedValue);
+
+                    parseValues.Modifier = new ExplodingDiceModifier();
+                }
                 else if (c == '+')
                 {
                     Append(dice, parseValues);
@@ -79,6 +112,10 @@ namespace DiceNotation
             {
                 dice.Constant(parseValues.Scalar*constant);
             }
+            else if (parseValues.Modifier != null)
+            {
+                dice.Dice(parseValues.Multiplicity, constant, parseValues.Scalar, parseValues.Modifier);
+            }
             else
             {
                 dice.Dice(parseValues.Multiplicity, constant, parseValues.Scalar, parseValues.Choose);
@@ -91,11 +128,16 @@ namespace DiceNotation
             public int Scalar;
             public int Multiplicity;
             public int? Choose;
+            public IDieModifier Modifier;
+            public CompareOperation? ModifierOperator;
+            public int? ModifierValue;
 
             public ParseValues Init()
             {
                 Scalar = 1;
                 Constant = "";
+                Modifier = null;
+                ModifierOperator = null;
                 return this;
             }
         }
