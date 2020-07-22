@@ -1,4 +1,4 @@
-using DiceNotation.Modifiers;
+﻿using DiceNotation.Modifiers;
 using System;
 using System.Text.RegularExpressions;
 
@@ -15,7 +15,7 @@ namespace DiceNotation
 
         public DiceExpression Parse(string expression)
         {
-            string cleanExpression = _whitespacePattern.Replace(expression.ToLower(), "");
+            string cleanExpression = _whitespacePattern.Replace(expression, "");
             cleanExpression = cleanExpression.Replace("+-", "-");
 
             var parseValues = new ParseValues().Init();
@@ -39,8 +39,14 @@ namespace DiceNotation
                 {
                     if (parseValues.Constant == "")
                         parseValues.Constant = "1";
+                    //Special case: FATE dice use capital F as they always have six sides
+                    if (i + 1 < cleanExpression.Length && (cleanExpression[i+1] == 'F'))
+                    {
+                        parseValues.Multiplicity = int.Parse(parseValues.Constant);
+                        parseValues.IsFate = true;
+                        ++i;
+                    }
                     parseValues.Multiplicity = int.Parse(parseValues.Constant);
-                    parseValues.Constant = "";
                 }
                 else if (c == 'k')
                 {
@@ -112,6 +118,11 @@ namespace DiceNotation
             {
                 dice.Constant(parseValues.Scalar*constant);
             }
+            else if(parseValues.IsFate)
+            {
+                dice.FateDice(parseValues.Multiplicity, parseValues.Scalar);
+                //TODO: Throw an exception if constant has a value, as it's not a valid dice term
+            }
             else if (parseValues.Modifier != null)
             {
                 dice.Dice(parseValues.Multiplicity, constant, parseValues.Scalar, parseValues.Modifier);
@@ -131,6 +142,7 @@ namespace DiceNotation
             public IDieModifier Modifier;
             public CompareOperation? ModifierOperator;
             public int? ModifierValue;
+            public Boolean IsFate;
 
             public ParseValues Init()
             {
@@ -138,6 +150,7 @@ namespace DiceNotation
                 Constant = "";
                 Modifier = null;
                 ModifierOperator = null;
+                IsFate = false;
                 return this;
             }
         }

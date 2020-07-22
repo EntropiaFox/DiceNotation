@@ -41,6 +41,12 @@ namespace DiceNotation
             return this;
         }
 
+        public DiceExpression FateDice(int multiplicity, int scalar = 1)
+        {
+            _terms.Add(new FateDiceTerm(multiplicity, scalar));
+            return this;
+        }
+
         public DiceExpression Constant(int constant)
         {
             _terms.Add(new ConstantTerm(constant));
